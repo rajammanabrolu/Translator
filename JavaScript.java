@@ -488,6 +488,7 @@ public class JavaScript extends Language {
 	 * for either language it will translate into.
 	 * @param str the syntax which will be translated into a longer comment.
 	 */
+	@Override
 	public void longComment(String str) throws IOException
 	{
 		if(toLang.equals("Python"))
