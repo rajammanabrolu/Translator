@@ -6,8 +6,7 @@ import java.util.*;
  * translates to JavaScript or Python. Private data for which language the class will translate to. Methods
  * in this class are called to translate from Java to either JavaScript or Python.
  * 
- * @author Nikola Istvanic
- * 
+ *
  */
 public class Java extends Language {
 
@@ -132,7 +131,7 @@ public class Java extends Language {
 				parameters+= " " + parameter.replace("(", "").replace(")", "");
 			}
 		}
-		
+
 		boolean isComment = false;
 		StringTokenizer st = new StringTokenizer(str);
 		String name = st.nextToken(); //"public"
@@ -170,7 +169,7 @@ public class Java extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * method accepts a string which is the method header of a Java method. From this, a method header for
 	 * either JavaScript or Python is created with appropriate parameters.
@@ -191,7 +190,7 @@ public class Java extends Language {
 			if (parameter.equals(COMMENT)) {
 				isComment = true;
 				break;
-			} else if (!(parameter.equals(CHAR) || parameter.equals(INT) || parameter.equals(BOOLEAN) 
+			} else if (!(parameter.equals(CHAR) || parameter.equals(INT) || parameter.equals(BOOLEAN)
 					|| parameter.equals(DOUBLE) || parameter.equals(STRING))) {
 				parameters+= " " + parameter;
 			}
@@ -218,7 +217,7 @@ public class Java extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * body is the end of the conditional tree in the translate method. Any syntax that is not recognized there
 	 * leads to the body method wherein rather specific code is translated.
@@ -333,7 +332,7 @@ public class Java extends Language {
 			// no comment
 		}
 	}
-	
+
 	/**
 	 * forLoop translate a Java for loop (both a for-each and regular for loop) into either JavScript or Python.
 	 * Loops consisting of multiplication or division are not correctly translated; only ++, --, x = x + ..., or
@@ -380,7 +379,7 @@ public class Java extends Language {
 						increment = st.nextToken();
 						start = start.replace(SEMI, "");
 						stop = stop.replace(SEMI, "");
-						bw.write(tFor + " " + name + " in range(" + start + ", " + stop + ", " 
+						bw.write(tFor + " " + name + " in range(" + start + ", " + stop + ", "
 								+ increment + ":");
 					} else {
 						String increment = st.nextToken();
@@ -411,7 +410,7 @@ public class Java extends Language {
 			// No comment.
 		}
 	}
-	
+
 	/**
 	 * ifWhileStatement translates if statements and while loops in tandem because both types of syntax have
 	 * similar syntax. The method translates from Java to either Javascript of Python.
@@ -442,7 +441,7 @@ public class Java extends Language {
 					} else if (syntax.equals("!")) {
 						bw.write(" not ");
 					} else {
-						bw.write(syntax.replace(")", "").replace("(", "")); // Write whatever is being 
+						bw.write(syntax.replace(")", "").replace("(", "")); // Write whatever is being
 																			// compared or inequalities.
 					}
 				} else {
@@ -461,7 +460,7 @@ public class Java extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * lineComment is called at the end of every method to see if there is a comment after any amount
 	 * of syntax. Because of this, it must be in a "try-catch" block or with the use of a boolean variable as
@@ -477,7 +476,7 @@ public class Java extends Language {
 			bw.write(" //" + str.replace(COMMENT, ""));
 		}
 	}
-	
+
 	/**
 	 * longComment checks for JavaDoc comments in the file and converts them into the appropriate
 	 * form for either language it will translate into.

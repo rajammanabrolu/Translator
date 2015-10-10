@@ -7,12 +7,11 @@ import java.util.*;
  * to write to the two classes. Private data in this class, in addition to the language which the translator
  * translates to, includes the name of the class in the translation.
  * 
- * @author Nikola Istvanic
  *
  */
 public class Python extends Language {
 	private String className = ""; // Python constructors do not include a name; the name of the class is the name of the constructor.
-	
+
 	public static final String I_STRUCTURE = ":";
 	public static final String F_STRUCTURE = ">"; // used to denote the end of a method in Python (StringTokenizer cannot read a new line).
 	public static final String FUNC = "def";
@@ -25,7 +24,7 @@ public class Python extends Language {
 	public static final String WHILE = "while";
 	public static final String FOR = "for";
 	public static final String INPUT = "input";
-	
+
 	/**
 	 * The constructor method for a Python object with a parameter representing the language the code in
 	 * Python will be changed to.
@@ -35,7 +34,7 @@ public class Python extends Language {
 	public Python(String toLang) throws IOException {
 		super(toLang);
 	}
-	
+
 	/**
 	 * translate takes in a string as a parameter and determines the translation of the entire line based
 	 * on the first word of that line. A lengthy series of conditionals determines the translation and
@@ -114,7 +113,7 @@ public class Python extends Language {
 			bw.newLine();
 		}
 	}
-	
+
 	/**
 	 * constructor takes in a string representing a constructor method in Python and translates it into either a
 	 * Java or Javascript constructor.
@@ -186,7 +185,7 @@ public class Python extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * method takes in a regular Python method header and converts it to the appropriate language: Java or
 	 * Javascript. For Java methods, they shall be considered void regardless of present return statements in
@@ -245,7 +244,7 @@ public class Python extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * body converts Python syntax into Java or Javascript syntax for code such as print statements and return
 	 * statements. If it is undetermined what the syntax is, it will be written in its current form.
@@ -372,7 +371,7 @@ public class Python extends Language {
 			//no comment
 		}
 	}
-	
+
 	/**
 	 * the forLoop method changes conventional and for-each loops in Python to corresponding Java or Javascript
 	 * for loops. Three kinds of Python for loops can be translated: for-in loops for iterative data, for-in
@@ -461,7 +460,7 @@ public class Python extends Language {
 			//No comment.
 		}
 	}
-	
+
 	/**
 	 * ifWhileStatement allows for the translation of either an if statement or while loop from Python to
 	 * Java or Javascript. The similar nature of the code of both of these blocks of code allow for the
@@ -524,7 +523,7 @@ public class Python extends Language {
 		bw.newLine();
 		bw.write("{");
 	}
-	
+
 	/**
 	 * lineComment is called at the end of every method to see if there is a comment after any amount
 	 * of syntax. Because of this, it must be in a "try-catch" block or the use of a boolean variable present
@@ -536,7 +535,7 @@ public class Python extends Language {
 	{
 		bw.write(" //" + str.replace(COMMENT, ""));
 	}
-	
+
 	/**
 	 * longComment checks for JavaDoc comments in the file and converts them into the appropriate
 	 * form for either language it will translate into.

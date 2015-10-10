@@ -2,15 +2,14 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The JavaScript class has two variants: "Java" and "Python." This determines whether the class translates 
- * to Java or Python. Private data for which language the class will translate to. Methods in this class 
+ * The JavaScript class has two variants: "Java" and "Python." This determines whether the class translates
+ * to Java or Python. Private data for which language the class will translate to. Methods in this class
  * are called to translate from Java to either Java or Python.
  * 
- * @author Nikola Istvanic
  *
  */
 public class JavaScript extends Language {
-	
+
 	public static final String I_STRUCTURE = "{";
 	public static final String F_STRUCTURE = "}";
 	public static final String FUNC = "function";
@@ -26,7 +25,7 @@ public class JavaScript extends Language {
 	public static final String BOOLEAN = "boolean";
 	public static final String FOR = "for";
 	public static final String INPUT = "prompt";
-	
+
 	/**
 	 * JavaScript is the constructor method for a JavaScript object. The toLang field determines to which
 	 * language the translator translates.
@@ -36,7 +35,7 @@ public class JavaScript extends Language {
 	public JavaScript(String toLang) throws IOException {
 		super(toLang);
 	}
-	
+
 	/**
 	 * translate takes in a string as a parameter and determines the correct translation of the entire line
 	 * based on the very first word of that line. Through a rather lengthy series of conditionals, the method
@@ -140,7 +139,7 @@ public class JavaScript extends Language {
 			bw.newLine();
 		}
 	}
-	
+
 	/**
 	 * constructor writes an accurate constructor for the language the translator translates to. Although
 	 * Java and Python's constructors are rather different, the method is still able to create a translation
@@ -225,7 +224,7 @@ public class JavaScript extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * The method method uses a the string from its parameter to create an equivalent method header for a
 	 * different computer language. In the case of to Java, methods are assumed to be void.
@@ -284,7 +283,7 @@ public class JavaScript extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * body takes any syntax that was rejected from all of the other conditionals of the translate method. In
 	 * this method, code such as printing, returning, and assigning variables is translated.
@@ -418,7 +417,7 @@ public class JavaScript extends Language {
 			//no comment
 		}
 	}
-	
+
 	/**
 	 * forLoop translates for loops from Javascript to either Java or Python. Both regular and for - each loops
 	 * work for this method, such that that method does not contain multiplication or division in the iterative
@@ -479,7 +478,7 @@ public class JavaScript extends Language {
 						increment = st.nextToken();
 						start = start.replace(";", "");
 						stop = stop.replace(";", "");
-						bw.write(tFor + " " + name + " in range(" + start + ", " + stop + ", " 
+						bw.write(tFor + " " + name + " in range(" + start + ", " + stop + ", "
 								+ increment + ":");
 					}
 					else
@@ -517,7 +516,7 @@ public class JavaScript extends Language {
 			//No comment.
 		}
 	}
-	
+
 	/**
 	 * ifWileStatement allows for the translation of if statements and while loops together. This is because of
 	 * their analogous code: if (x || y) and while (x || y) are similar in structure and allow for efficient
@@ -588,7 +587,7 @@ public class JavaScript extends Language {
 			this.lineComment(comment);
 		}
 	}
-	
+
 	/**
 	 * lineComment is called at the end of every method to see if there is a comment after any amount
 	 * of syntax. Because of this, it must be in a "try-catch" block or with the aid of a boolean variable in
@@ -607,9 +606,9 @@ public class JavaScript extends Language {
 			bw.write(" //" + str.replace(COMMENT, ""));
 		}
 	}
-	
+
 	/**
-	 * longComment checks for JavaDoc-like comments in the file and converts them into the appropriate form 
+	 * longComment checks for JavaDoc-like comments in the file and converts them into the appropriate form
 	 * for either language it will translate into.
 	 * @param str the syntax which will be translated into a longer comment.
 	 */
